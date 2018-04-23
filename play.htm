@@ -22,7 +22,7 @@ function cmp_loaded(key) {
 	}
 }
 function cmp_model_load(data) {
-	parent.window.document.title = cmpo.item("label") + " - 酷视影院www.4yyy.cn";
+	parent.window.document.title = cmpo.item("label") + " - 十年影院www.10yy.win";
 }
 var str=window.location.search;
 var tvsrc=null;
@@ -30,14 +30,14 @@ var tvsrc=null;
 if(str){
 	var arr=(str.slice(1)).split('=');
 	if(arr[0]=='php'){
-		tvsrc='http://yy2894.com/php/'+arr[1]+'.php';
+		tvsrc='http://b.10yy.win/movie/list/'+arr[1]+'.php';
 	}else{
-		tvsrc='/list/'+arr[1]+'.xml';
+		tvsrc='http://b.10yy.win/movie/list/'+arr[1]+'.xml';
 	}
 }
 
 var flashvars = {
-	name: "酷视影院www.4yyy.cn",
+	name: "十年影院www.10yy.win",
 	lists: tvsrc,
 	api : "cmp_loaded"
 };
