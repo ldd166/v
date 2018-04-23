@@ -1,0 +1,297 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>列表导航页面</title>
+
+<link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<style>
+body { margin:0px; padding:3px; /*overflow-x:hidden;*/ padding-right:0px; }
+#shouye { display:block; margin:0px 1px 0px 1px; padding-left:17px; background:url(images/1.png) no-repeat; height:20px; background-color: #fafafa; background-position: 2px 3px; line-height: 20px; font-family: "宋体"; font-size: 12px; font-style: normal; text-decoration:none; color:#000;  }
+#shouye:hover,#shouye:active{ background-color:#cbe2e5; overflow:hidden; background-repeat: no-repeat; background-position: 2px 3px; text-decoration:none; color:#C00; }
+a { display:block; margin:2px 1px 0px 1px; padding-left:17px; background:url(images/2.png) no-repeat; height:20px; background-color: #fafafa; background-position: 2px 3px; line-height: 20px; font-family: "宋体"; font-size: 12px; font-style: normal; text-decoration:none; color:#000; }
+a:hover,a:active{ background-color:#cbe2e5; background-repeat: no-repeat; background-position: 2px 3px; text-decoration:none; color:#F00; }
+ul { list-style-type: none; padding: 0; margin:0px; }
+h1 { margin:0px; cursor:pointer; }
+h2 { margin:0px; overflow:hidden; height:0px; }
+.dh_list li h1 { display:block; line-height: 17px; }
+.dh_list li h1 a { font-family: "宋体"; font-size: 12px; font-style: normal; text-decoration:none; color:#F00; font-weight:normal;background:url(images/+.png) no-repeat; background-color: #fafafa; background-position: 2px 3px; }
+.dh_list li h1 a:hover,#dh_list li h1 a:active{ background-color:#cbe2e5; background-repeat: no-repeat; background-position: 2px 3px; text-decoration:none; color:#009; }
+.dh_list li h2 a { font-family: "宋体"; font-size: 12px; font-style: normal; text-decoration:none; color:#000; font-weight:normal; text-indent:10px; background:url(images/2.png) no-repeat; background-position: 12px 3px; background-color: #fafafa; }
+.dh_list li h2 a:hover,#dh_list li h2 a:active{ background-color:#cbe2e5; background-repeat: no-repeat; background-position: 12px 3px; text-decoration:none; }
+</style>
+<script>
+$(window).load(function(){
+	var ah1a=$('#lists').find('.a_list');
+	var a_click=$('#lists').find('a').not('.a_list');
+	
+	a_click.click(function(){
+		a_click.removeAttr('style');
+		$(this).css({'color':'red'});
+	});
+	ah1a.toggle(function(){
+		var _this=$(this);
+		$(this).parent().next().css({'height':'auto'});
+		this.oHeight=parseInt($(this).parent().next().css('height'));
+		$(this).parent().next().css({'height':'0px'});
+		
+		$(this).parent().next().animate({'height':this.oHeight},function(){
+			_this.css('background-image','url("images/-.png")');
+		});
+	},function(){
+		var _this=$(this);
+		$(this).parent().next().animate({'height':0},function(){
+			_this.css('background-image','url("images/+.png")');
+		});
+	});
+	$(document).bind('contextmenu',function(){
+		return false;
+	});
+});
+$(window).load(function(){
+	var oGet=window.location.search;
+	if(oGet){
+		var arr_oGet=oGet.split("=");
+		var url_arr=decodeURI(arr_oGet[1]);
+		$('.dh_list').find('.a_list').hide();
+		var alists=$('#lists').find('a').not('.a_list');
+		alists.hide();
+		alists.each(function(){
+			if($(this).text().indexOf(url_arr)!=-1){
+				$(this).parent().css({'height':'auto'});
+				$(this).show();
+				$(this).css({'backgroundPosition':'2px 3px','textIndent':'0px'});
+			}
+		});
+	}
+	$('#shouye').click(function(){
+		window.location.href='list.htm'
+	});
+});
+function play(play_id){
+	var get_id=play_id.split('=');
+	if(get_id[0]=='web'){
+		window.top.frames['play'].location.href='web/'+get_id[1]+'.htm';
+        }else if(get_id[0]=='p'){
+                 window.top.frames['play'].location.href='http://10yy.win/emlog/post-/'+get_id[1]+'.html';
+        }else if(get_id[0]=='yk'){
+                 window.top.frames['play'].location.href='http://10yy.win/s/?url=http://v.youku.com/v_show/id_'+get_id[1]+'.html';
+        }else if(get_id[0]=='qy'){
+                 window.top.frames['play'].location.href='http://10yy.win/s/?url=http://www.iqiyi.com/v_'+get_id[1]+'.html';
+        }else if(get_id[0]=='kj'){
+                 window.top.frames['play'].location.href=get_id[1];
+	}else{
+		window.top.frames['play'].location.href='play.htm?'+play_id;
+	}
+}
+</script>
+</head>
+<body onContextMenu="return false;" onSelectStart="return false">
+<a id="shouye" style="cursor:pointer;">【十年影视】最新电影就在十年影院...</a>
+<div id="lists">
+	<div id="qian">
+      
+   
+        <a href="javascript:play('kj=http://play.10yy.win/player/index.htm');">┃清晰┊　夏洛特烦恼　　　　　　┊┃</a>
+        <a href="javascript:play('kj=http://play.10yy.win/up.php');">          ┃清晰┊　 网盘　　　　     　　　　┊┃</a>
+        <a href="javascript:play('p=1');">┃清晰┊　夏洛特烦恼　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10012');">┃清晰┊　港囧　高清完整版　　　┊┃</a>
+        <a href="javascript:play('web=baidu');">┃清晰┊　电锯惊魂1-7 　　　　　┊┃</a>
+        <ul class="dh_list"><li><h1>
+        <a class="a_list">     ┃测试┊　抖音音乐　　　　 ┊┃</a></h1>   
+        <h2>
+        <a href="javascript:play('yk=XMzQ3NDExODk5Mg==');">┃清晰┊　优酷抖音音乐　　　　 ┊┃</a>
+        <a href="javascript:play('qy=19rrm5jnqs');">       ┃清晰┊　奇艺　　　　 ┊┃</a>
+        </h2>
+        </li></ul>
+        <ul class="dh_list">
+            <li>
+                <h1>
+                    <a class="a_list">┃清晰┊　第一部分　  　　　　　 ┊┃</a>
+                </h1>
+                <h2>
+                    <a href="javascript:;">┃清晰┊　传奇柯南　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鬼吹灯　　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　黑旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风4　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风5　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风6　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风7　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风8　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风9　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风10　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风11　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风12　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风13　　　　　　　┊┃</a>
+                </h2>
+            </li>
+        </ul>
+        <ul class="dh_list">
+            <li>
+                <h1>
+                    <a class="a_list">┃清晰┊　第二部分　  　　　　　 ┊┃</a>
+                </h1>
+                <h2>
+                    <a href="javascript:;">┃清晰┊　传奇柯南　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鬼吹灯　　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　黑旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风4　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风5　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风6　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风7　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风8　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风9　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风10　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风11　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风12　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风13　　　　　　　┊┃</a>
+                </h2>
+            </li>
+        </ul>
+        <a href="javascript:play('tv=10056');">┃清晰┊　致命弯道1-6 　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　迷失之牙　　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　流浪法师　　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　皮城女警　　　　　　　┊┃</a>
+        <ul class="dh_list">
+            <li>
+                <h1>
+                    <a class="a_list">┃清晰┊　第三部分　  　　　　　 ┊┃</a>
+                </h1>
+                <h2>
+                    <a href="javascript:;">┃清晰┊　传奇柯南　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鬼吹灯　　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　黑旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风1　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风4　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风5　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风6　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风7　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风8　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风9　 　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风10　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风11　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风12　　　　　　　┊┃</a>
+                    <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风13　　　　　　　┊┃</a>
+                </h2>
+            </li>
+        </ul>
+        <a href="javascript:play('tv=10078');">┃清晰┊　艾欧尼亚　　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　卡特琳娜　　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　黑旋风2　 　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+        <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+    </div>
+	<ul class="dh_list">
+    	<li>
+        	<h1>
+            	<a class="a_list">┃清晰┊　第一部分　  　　　　　 ┊┃</a>
+			</h1>
+            <h2>
+            	<a href="javascript:;">┃清晰┊　传奇柯南　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鬼吹灯　　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　黑旋风1　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风1　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风4　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风5　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风6　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风7　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风8　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风9　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　龙卷风10　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风11　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风12　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风13　　　　　　　┊┃</a>
+            </h2>
+        </li>
+        <li>
+        	<h1>
+            	<a class="a_list">┃清晰┊　第二部分　　  　　　 　┊┃</a>
+			</h1>
+            <h2>
+            	<a href="javascript:play('tv=10078');">┃清晰┊　穿越火线　　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风2　　 　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+            </h2>
+        </li>
+        <li>
+        	<h1>
+            	<a class="a_list">┃清晰┊　第三部分 　　　  　　　┊┃</a>
+			</h1>
+            <h2>
+            	<a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风3　　 　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　QQ旋风4　 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+            </h2>
+        </li>
+        <li>
+        	<h1>
+            	<a class="a_list">┃清晰┊　第四部分 　　　 　　　┊┃</a>
+			</h1>
+            <h2>
+            	<a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+            </h2>
+        </li>
+        <li>
+        	<h1>
+            	<a class="a_list">┃清晰┊　第五部分 　　　　　 　┊┃</a>
+			</h1>
+            <h2>
+            	<a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+                <a href="javascript:play('tv=10078');">┃清晰┊　鲨卷风1-3 　　　　　　┊┃</a>
+            </h2>
+        </li>
+     </ul>
+</div>
+</body>
+</html>
