@@ -51,19 +51,9 @@ $(window).load(function(){
 		}
 	});
 });
-function play(play_id){
-	var get_id=play_id.split('=');
-	if(get_id[0]=='web'){
-		window.top.frames['play'].location.href='web/'+get_id[1]+'.htm';
-        }else if(get_id[0]=='p'){
-                 window.top.frames['play'].location.href='http://10yy.win/emlog/post-/'+get_id[1]+'.html';
-        }else if(get_id[0]=='kj'){
-                 window.top.frames['play'].location.href=get_id[1];
-	}else{
-		window.top.frames['play'].location.href='play.htm?'+play_id;
-	}
-}
 </script>
+
+<script src="js/xcmp.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="dh">
@@ -77,8 +67,7 @@ function play(play_id){
     <div id="dht">
         <h2><a class="a_bg" href="javascript:play('tv=10110');">首页导航</a></h2>
         <h2><a href="javascript:play('web=baidu');">百度音乐</a></h2>
-        <h2><a href="javascript:play('web=ttdt');">天天动听</a></h2>
-        <h2><a href="javascript:play('web=ku280');">电视直播</a></h2>
+        <h2><a href="javascript:play('kj=http://www.yswhw.cn/live.php');">电视直播</a></h2>
 	</div>
 </div>
 </body>
