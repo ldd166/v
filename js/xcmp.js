@@ -59,7 +59,7 @@ function play(play_id){
         }else if(get_id[0]=='kj'){
                  window.top.frames['play'].location.href=get_id[1];
         }else if(get_id[0]=='yy'){
-                 window.top.frames['play'].location.href='http://play.10yy.win/player/cmp.swf?auto_play=1&skin_id=2&src=http://link.hhtjim.com/163/'+get_id[1]+'.mp3';
+                 window.top.frames['play'].location.href='https://cdn.jsdelivr.net/gh/ldd166/v/cmp/cmp.swf?auto_play=1&skin_id=2&src=http://link.hhtjim.com/'+get_id[1]+'.mp3';
 	}else{
 		window.top.frames['play'].location.href='xplay.htm?'+play_id;
 	}
